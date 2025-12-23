@@ -1,0 +1,221 @@
+/* ============================================= */
+/*    KISIO FRANCIS – EXACTLY LIKE BIZSOLUTION   */
+/*    Transparent → White on Scroll (Demo Style) */
+/* ============================================= */
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+    font-family:'Poppins',sans-serif;
+    line-height:1.7;
+    color:#333;
+    background:#f8f9ff;
+}
+
+/* =============== NAVBAR – IDENTICAL TO DEMO =============== */
+.navbar {
+    position:fixed;
+    top:0; left:0; width:100%;
+    height:80px;
+    z-index:1000;
+    background:transparent !important;
+    transition:all 0.4s ease;
+    backdrop-filter:none;
+}
+
+.navbar.scrolled {
+    background:rgba(255,255,255,0.97) !important;
+    backdrop-filter:blur(12px);
+    box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Logo & Menu Container */
+.nav-container {
+    height:100%;
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Logo – white at top → blue on scroll */
+.logo {
+    font-size:1.85rem;
+    font-weight:700;
+    color:white;
+    text-shadow:0 2px 10px rgba(0,0,0,0.6);
+    transition:all 0.4s;
+}
+.navbar.scrolled .logo { color:#007bff; text-shadow:none; }
+
+/* Menu Links – white → dark on scroll */
+.nav-menu {
+    display:flex;
+    gap:2.8rem;
+    list-style:none;
+}
+.nav-menu a {
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    font-size:1.02rem;
+    text-shadow:0 2px 8px rgba(0,0,0,0.5);
+    transition:all 0.4s;
+    position:relative;
+}
+.nav-menu a:hover,
+.nav-menu a.active { color:#007bff !important; }
+
+/* Active underline – exactly like demo */
+.nav-menu a.active::after {
+    content:'';
+    position:absolute;
+    bottom:-6px; left:0;
+    width:100%; height:2px;
+    background:#007bff;
+}
+
+/* Scrolled state – dark text */
+.navbar.scrolled .nav-menu a {
+    color:#333;
+    text-shadow:none;
+}
+.navbar.scrolled .nav-menu a:hover,
+.navbar.scrolled .nav-menu a.active { color:#007bff; }
+
+/* Hamburger */
+.hamburger { display:none; cursor:pointer; }
+.hamburger span {
+    width:26px; height:3px; background:white;
+    margin:5px 0; border-radius:3px;
+    transition:0.3s;
+}
+.navbar.scrolled .hamburger span { background:#333; }
+
+/* =============== HERO – PHOTO MOVES UNDER NAV =============== */
+.hero-personal {
+    height:100vh;
+    min-height:700px;
+    background:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.78)),
+               url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920') center/cover no-repeat fixed;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding-top:80px;                     /* ← important: makes space for fixed nav */
+}
+.hero-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(135deg,rgba(0,123,255,0.25),rgba(0,0,0,0.6));
+}
+.hero-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 40px;
+    position:relative;
+    z-index:2;
+}
+
+/* Rest of hero stays the same – your name, typing, photo, buttons */
+.hero-text h1 { color:white !important; font-size:5rem; font-weight:700; margin-bottom:15px; }
+.hero-text h1 span { color:#007bff; } 
+.hero-text h2 { color:white; font-size:2.9rem; margin:20px 0; min-height:90px; }
+.typed-text { color:#007bff; font-weight:700; }
+.cursor { display:inline-block; width:4px; background:white; margin-left:6px; animation:blink 1s infinite; }
+@keyframes blink { 50% { background:transparent; } }
+.hero-subtitle {color:white; font-size:1.35rem; max-width:520px; margin:35px 0; opacity:.95; }
+.cta-btn { padding:16px 42px; background:#007bff; color:white; border-radius:50px; margin-right:20px; display:inline-block; }
+.cta-btn.secondary { background:transparent; border:2px solid white; }
+.cta-btn.secondary:hover { background:white; color:#007bff; }
+.hero-image img {
+    width:420px; height:420px; object-fit:cover; border-radius:50%;
+    border:12px solid rgba(255,255,255,0.18); box-shadow:0 30px 60px rgba(0,0,0,0.6);
+}
+
+/* =============== SECTIONS & MOBILE – SAME AS BEFORE =============== */
+.section { padding:130px 0; text-align:center; }
+.section h2 { font-size:2.8rem; margin-bottom:70px; }
+.about, .testimonials { background:white; }
+.services, .contact { background:#f8f9ff; }
+/* (services, portfolio, contact, footer styles stay exactly as last working version) */
+
+/* Mobile */
+@media (max-width:992px) {
+    .hamburger { display:flex; flex-direction:column; gap:5px; }
+    .nav-menu {
+        position:fixed; top:80px; left:-100%; width:100%;
+        height:calc(100vh-80px); background:white;
+        flex-direction:column; padding-top:60px; transition:0.4s;
+    }
+    .nav-menu.active { left:0; }
+    .nav-menu a { color:#333 !important; font-size:1.7rem; padding:15px; }
+    .hero-grid { grid-template-columns:1fr; text-align:center; }
+    .hero-text h1 { font-size:3.8rem; }
+    .hero-text h2 { font-size:2.4rem; }
+}
+/* SERVICES – MAKE YOUR CURRENT SIMPLE CARDS LOOK LIKE THE DEMO (NO HTML CHANGE NEEDED) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 60px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.09);
+    transition: all 0.45s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Big beautiful icon that appears automatically */
+.service-card::before {
+    content: "";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 4rem;
+    color: #007bff;
+    margin-bottom: 25px;
+    display: block;
+    transition: color 0.45s;
+}
+
+/* Different icon for each card */
+.service-card:nth-child(1)::before { content: "\f121"; } /* fa-code */
+.service-card:nth-child(2)::before { content: "\f201"; } /* fa-chart-line */
+.service-card:nth-child(3)::before { content: "\f0b1"; } /* fa-briefcase */
+
+/* Hover effect – exactly like the demo */
+.service-card:hover {
+    transform: translateY(-20px);
+    background: #007bff;
+    box-shadow: 0 25px 50px rgba(0,123,255,0.35);
+}
+
+.service-card:hover::before,
+.service-card:hover {
+    color: white !important;
+}
+
+.service-card:hover * {
+    color: white !important;
+}
+
+/* Title style inside card */
+.service-card {
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: #222;
+}
